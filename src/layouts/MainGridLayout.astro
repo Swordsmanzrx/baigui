@@ -5,6 +5,7 @@ import Navbar from "@components/Navbar.astro";
 import SideBar from "@components/widget/SideBar.astro";
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
+import EntranceOverlay from "../components/EntranceOverlay.svelte";
 import ImageWrapper from "../components/misc/ImageWrapper.astro";
 import TOC from "../components/widget/TOC.astro";
 import { siteConfig } from "../config";
@@ -42,6 +43,8 @@ const mainPanelTop = siteConfig.banner.enable
 ---
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
+
+<EntranceOverlay client:load />
 
 <Navbar />  
 
