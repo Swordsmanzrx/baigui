@@ -62,7 +62,7 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa6-solid:code", // Visit https://icones.js.org/ for icon codes
 			// You will need to install the corresponding icon set if it's not already included
 			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://www.luogu.com.cn/user/164869",
+			url: "https://www.luogu.com.cn/user/1648693",
 		},
 		{
 			name: "Codeforces",

@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import Pagination from "../components/control/Pagination.astro";
 import ParticleEffect from "../components/ParticleEffect.svelte";
 import PostPage from "../components/PostPage.astro";
+import Typewriter from "../components/Typewriter.svelte";
 import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
@@ -11,14 +12,46 @@ export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
 	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
-// https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
-
 const len = page.data.length;
+
+const quotes = [
+	"或许是不知梦的缘故，流离之人追逐幻影 — 《龙族》",
+	"世界上有一种生命，它的每一次死亡，都是为了归来 — 《龙族》",
+	"命运这种东西，生来就是要被踏于足下的 — 《龙族》",
+	"我重临世界之日，诸逆臣皆当死去 — 《龙族》",
+	"凡王之血，必以剑终 — 《龙族》",
+	"我们每个人都是为了自己而活着，所谓正义，不过是站在多数人的立场上 — 《龙族》",
+	"比孤独更可悲的事情，就是根本不知道自己很孤独 — 《龙族》",
+	"你陪了我多少年，花开花落，一路上起起跌跌 — 《龙族》",
+	"要活下去啊，哥哥，你是我的英雄 — 《龙族》",
+	"所谓离别，大概就是这样的吧，往日的阳光，以往的欢声笑语 — 《龙族》",
+	"何が起きても、前を向け — 银魂",
+	"王侯将相，宁有种乎！ — 陈胜",
+	"匈奴未灭，何以家为？ — 霍去病",
+	"受命于天，既寿永昌 — 始皇帝传国玉玺",
+	"苍天已死，黄天当立 — 张角",
+	"犯我强汉者，虽远必诛 — 陈汤",
+	"天下兴亡，匹夫有责 — 顾炎武",
+	"苟利国家生死以，岂因祸福避趋之 — 林则徐",
+	"天行健，君子以自强不息 — 《周易》",
+	"地势坤，君子以厚德载物 — 《周易》",
+	"己所不欲，勿施于人 — 《论语》",
+	"学而不思则罔，思而不学则殆 — 《论语》",
+	"三人行，必有我师焉 — 《论语》",
+	"富贵不能淫，贫贱不能移，威武不能屈 — 《孟子》",
+	"生于忧患，死于安乐 — 《孟子》",
+	"大学之道，在明明德，在亲民，在止于至善 — 《大学》",
+	"博学之，审问之，慎思之，明辨之，笃行之 — 《中庸》",
+	"路漫漫其修远兮，吾将上下而求索 — 《离骚》",
+];
 ---
 
 <MainGridLayout>
+    <div class="text-center text-2xl font-bold text-white mb-4 select-none">
+        <Typewriter texts={quotes} speed={120} pauseTime={6000} client:load />
+    </div>
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>
